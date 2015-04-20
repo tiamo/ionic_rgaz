@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $location, $ionicPush, Auth) {
+.controller('AppCtrl', function($scope, $location, $ionicPush, $timeout, Auth) {
+
 	$scope.credentials = {
 		username: '',
 		password: ''
@@ -24,6 +25,19 @@ angular.module('starter.controllers', [])
 				$scope.error = 'Вы ввели не правильные данные.';
 				$scope.loading = false;
 			}
+		});
+	}
+	
+	$scope.push = {};
+	if (window.cordova && window.cordova.plugins) {
+		$ionicPush.register({
+			canShowAlert: false,
+			onNotification: function(notification) {
+				// Called for each notification for custom handling
+				$scope.push.lastNotification = JSON.stringify(notification);
+			}
+		}).then(function(deviceToken) {
+			$scope.push.token = deviceToken;
 		});
 	}
 })

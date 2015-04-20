@@ -9,5 +9,9 @@
 			<li class="item">В месяц<span class="item-note">{{gasvelocity * 30}}%</span></li>
 			<li class="item">Осталось газа на<span class="item-note">{{gasvolume / gasvelocity | number:0}} дн</span></li>
 		</ul>
+		<br/>
+		<br/>
+		<p>token: {{push.token}}</p>
+		<p>last notification: {{push.lastNotification}}</p>
 	</ion-content>
 </ion-view>
