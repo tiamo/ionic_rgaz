@@ -2,11 +2,11 @@
 <widget id="com.ionicframework.rgaz139240" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>rgaz</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
+	An Ionic Framework and Cordova project.
+  </description>
   <author email="vk.tiamo@gmail.com" href="http://github.com/tiamo">
-      VLadislav Kornienko
-	</author>
+	VLadislav Kornienko
+  </author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
@@ -15,6 +15,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="show-splash-screen-spinner" value="true" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
@@ -48,9 +49,10 @@
   </platform>
   <icon src="resources\ios\icon\icon-small@3x.png"/>
   
+  <gap:plugin name="org.apache.cordova.splashscreen" />
   <gap:plugin name="org.apache.cordova.console" />
   <gap:plugin name="org.apache.cordova.device" />
+  <gap:plugin name="org.apache.cordova.dialogs" />
   <gap:plugin name="com.phonegap.plugins.PushPlugin" />
-  <gap:plugin name="com.ionic.keyboard" />
-	
+  
 </widget>
