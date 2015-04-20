@@ -63,6 +63,7 @@ angular.module('starter.services', [])
 				});
 			}
 			else {
+				alert('push not register');
 				$ionicUser.identify(response.data);
 			}
 		});

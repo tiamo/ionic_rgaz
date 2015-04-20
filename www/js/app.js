@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 	};
 })
 
-.run(function($ionicPlatform, $rootScope, $ionicPush, Auth) {
+.run(function($ionicPlatform, $rootScope, Auth) {
 	
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -52,6 +52,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 		if (window.StatusBar) {
 			StatusBar.styleLightContent();
 		}
+		alert(JSON.stringify(window.cordova.plugins))
 	});
 	
 	$rootScope.$on('$stateChangeStart', function(e) {
