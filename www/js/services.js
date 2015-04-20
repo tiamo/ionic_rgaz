@@ -1,29 +1,29 @@
 angular.module('starter.services', [])
 
-.factory('Auth', function($http, $location, $ionicUser, $ionicPush, $timeout, $window) {
+.factory('Auth', function($q, $http, $location, $ionicUser, $ionicPush, $timeout, $window) {
 	
 	var authService = {
 		baseUrl: 'http://cl.rgaz.su/api',
 		homePath: '/dash',
 		loginPath: '/login',
-		token: localStorage.getItem('token'),
-		push: {
-			lastNotification: null,
-			deviceToken: null
-		}
+		token: localStorage.getItem('token')
 	}
 	
 	// login
-	authService.login = function(credentials, successCallback) {
-		return $http.post(this.baseUrl+'/auth',{
+	authService.login = function(credentials) {
+		var deferred = $q.defer();
+		$http.post(this.baseUrl+'/auth',{
 			identity: credentials.username,
 			credential: credentials.password
-		}).then(function(response) {
-			authService.setToken(response.data.token);
-			if (successCallback){
-				successCallback(response.data);
-			}
-		});
+		})
+		.success(function(data) {
+			authService.setToken(data.token);
+			deferred.resolve(data);
+		})
+        .error(function() {
+			deferred.reject('error');
+        });
+		return deferred.promise;
 	}
 	
 	// logout
@@ -46,19 +46,19 @@ angular.module('starter.services', [])
 		if (!token) {
 			return;
 		}
-		return $http.get(this.baseUrl+'/user?access_token='+token).then(function(response) {
-			console.log($window.plugins.pushNotification)
+		return $http.get(this.baseUrl+'/user?access_token='+token)
+		.success(function(data) {
 			$ionicPush.register({
-				canShowAlert: false,
+				// canShowAlert: false,
 				onTokenRecieved: function(token) {
-					console.log('token recived: ' + token);
+					// console.log('token recived: ' + token);
 				},
 				onNotification: function(notification) {
-					console.log('notification: ' + JSON.stringify(notification));
-					authService.push.lastNotification = JSON.stringify(notification);
+					// console.log('notification: ' + JSON.stringify(notification));
+					// authService.push.lastNotification = JSON.stringify(notification);
 				}
-			}, response.data).then(function(deviceToken) {
-				authService.push.deviceToken = deviceToken;
+			}, data).then(function(deviceToken) {
+				$ionicUser.set('deviceToken', deviceToken);
 			});
 		});
 	}

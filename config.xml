@@ -8,7 +8,6 @@
 	VLadislav Kornienko
   </author>
   <content src="index.html"/>
-  <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -16,8 +15,12 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="3000"/>
   <preference name="show-splash-screen-spinner" value="true"/>
+  <preference name="auto-hide-splash-screen" value="true" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
+  </feature>
+  <feature name="PushPlugin">
+    <param name="ios-package" value="PushPlugin" />
   </feature>
   <icon src="resources/ios/icon/icon-small@3x.png"/>
   <icon gap:platform="ios" src="resources/ios/icon/icon.png" width="57" height="57"/>
@@ -36,19 +39,20 @@
   <icon gap:platform="ios" src="resources/ios/icon/icon-small.png" width="29" height="29"/>
   <icon gap:platform="ios" src="resources/ios/icon/icon-small@2x.png" width="58" height="58"/>
   <icon gap:platform="ios" src="resources/ios/icon/icon-small@3x.png" width="87" height="87"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" height="1242"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" height="768"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" height="1024"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
-  <splash gap:platform="ios" src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" height="1242"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" height="768"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" height="1024"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
+  <gap:splash gap:platform="ios" src="resources/ios/splash/Default~iphone.png" width="320" height="480"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.console"/>
   <gap:plugin name="org.apache.cordova.device"/>
   <gap:plugin name="org.apache.cordova.dialogs"/>
   <gap:plugin name="com.phonegap.plugins.PushPlugin"/>
+  <access origin="*"/>
 </widget>

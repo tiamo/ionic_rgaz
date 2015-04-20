@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $location, $ionicPush, $timeout, Auth) {
+.controller('AppCtrl', function($scope, $location, $ionicPush, $ionicLoading, Auth) {
 
 	$scope.credentials = {
 		username: '',
@@ -10,31 +10,30 @@ angular.module('starter.controllers', [])
 		Auth.logout();
 		$location.path(Auth.loginPath);
 	}
-	$scope.loading = false;
 	$scope.login = function(credentials){
 		$scope.error = '';
-		$scope.loading = true;
-		Auth.login(credentials, function(data){
+		$ionicLoading.show({
+			template: 'Загрузка...'
+		});
+		Auth.login(credentials).then(function(data){
 			if (data.token){
 				Auth.identify(data.token).then(function(){
 					$location.path(Auth.homePath);
-					$scope.loading = false;
+					$ionicLoading.hide();
 				});
 			}
 			else {
 				$scope.error = 'Вы ввели не правильные данные.';
-				$scope.loading = false;
+				$ionicLoading.hide();
 			}
 		});
 	}
-	
-	$scope.push = Auth.push;
 })
 
 .controller('DashCtrl', function($scope, $ionicUser) {
-	var user = $ionicUser.get();
-	$scope.gasvolume = parseFloat(user.gasvolume) || 0;
-	$scope.gasvelocity = parseFloat(user.gasvelocity) || 0;
+	$scope.user = $ionicUser.get();
+	$scope.gasvolume = parseFloat($scope.user.gasvolume) || 0;
+	$scope.gasvelocity = parseFloat($scope.user.gasvelocity) || 0;
 })
 
 .controller('GasCtrl', function($scope, $ionicUser) {
