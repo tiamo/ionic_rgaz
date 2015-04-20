@@ -62,6 +62,7 @@ angular.module('starter.services', [])
 					$ionicUser.identify({
 						deviceToken: deviceToken
 					});
+					console.log($ionicUser.get());
 				});
 				
 			});
