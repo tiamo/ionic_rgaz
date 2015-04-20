@@ -1,0 +1,10 @@
+<ion-view view-title="Показания">
+	<ion-content class="padding">
+		<br/>
+		<div class="gasholder" title="Последнее обновление {{user.gasupdated*1000|date:'yyyy-MM-dd HH:mm:ss'}}">
+			<div class="progress"><div style="height:{{user.gasvolume}}%"></div></div>
+			<div class="value">{{user.gasvolume}}%</div>
+			<img ng-src="img/gasholder.png" alt="" />
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view view-title="Авторизация">
+	<ion-content class="padding">
+		<form name="loginForm" ng-submit="login(credentials)" role="form" novalidate>
+			<div class="list" ng-if="error">
+				{{error}}
+			</div>
+			<div class="list">
+				<label class="item item-input">
+					<span class="input-label">Логин</span>
+					<input type="text" name="username" ng-model="credentials.username" />
+				</label>
+				<label class="item item-input">
+					<span class="input-label">Пароль</span>
+					<input type="password" name="password" ng-model="credentials.password" />
+				</label>
+			</div>
+			<button class="button button-block button-positive" type="submit" ng-disabled="loading">Войти</button>
+		</form>
+	</ion-content>
+</ion-view>
