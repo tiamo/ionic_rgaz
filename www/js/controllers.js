@@ -22,6 +22,7 @@ angular.module('starter.controllers', [])
 			}
 			else {
 				$scope.error = 'Вы ввели не правильные данные.';
+				$scope.loading = false;
 			}
 		});
 	}
