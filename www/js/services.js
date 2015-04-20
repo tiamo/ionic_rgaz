@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Auth', function($http, $location, $ionicUser, $ionicPush, $timeout) {
+.factory('Auth', function($http, $location, $ionicUser, $ionicPush, $timeout, $window) {
 	
 	var authService = {
 		baseUrl: 'http://cl.rgaz.su/api',
@@ -48,9 +48,14 @@ angular.module('starter.services', [])
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token).then(function(response) {
 			if (window.cordova && window.cordova.plugins) {
+				alert('push register');
 				$ionicPush.register({
 					canShowAlert: false,
+					onTokenRecieved: function(token) {
+						alert('token recived: ' + token);
+					},
 					onNotification: function(notification) {
+						alert('notification: ' + JSON.stringify(notification));
 						authService.push.lastNotification = JSON.stringify(notification);
 					}
 				}, response.data).then(function(deviceToken) {

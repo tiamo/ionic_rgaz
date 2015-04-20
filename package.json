@@ -20,5 +20,7 @@
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.dialogs"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }
