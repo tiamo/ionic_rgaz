@@ -28,18 +28,7 @@ angular.module('starter.controllers', [])
 		});
 	}
 	
-	$scope.push = {};
-	if (window.cordova && window.cordova.plugins) {
-		$ionicPush.register({
-			canShowAlert: false,
-			onNotification: function(notification) {
-				// Called for each notification for custom handling
-				$scope.push.lastNotification = JSON.stringify(notification);
-			}
-		}).then(function(deviceToken) {
-			$scope.push.token = deviceToken;
-		});
-	}
+	$scope.push = Auth.push;
 })
 
 .controller('DashCtrl', function($scope, $ionicUser) {

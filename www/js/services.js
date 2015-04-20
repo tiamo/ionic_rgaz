@@ -1,12 +1,16 @@
 angular.module('starter.services', [])
 
-.factory('Auth', function($http, $location, $ionicUser) {
+.factory('Auth', function($http, $location, $ionicUser, $ionicPush, $timeout) {
 	
 	var authService = {
 		baseUrl: 'http://cl.rgaz.su/api',
 		homePath: '/dash',
 		loginPath: '/login',
-		token: localStorage.getItem('token')
+		token: localStorage.getItem('token'),
+		push: {
+			lastNotification: null,
+			deviceToken: null
+		}
 	}
 	
 	// login
@@ -43,7 +47,19 @@ angular.module('starter.services', [])
 			return;
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token).then(function(response) {
-			$ionicUser.identify(response.data);
+			if (window.cordova && window.cordova.plugins) {
+				$ionicPush.register({
+					canShowAlert: false,
+					onNotification: function(notification) {
+						authService.push.lastNotification = JSON.stringify(notification);
+					}
+				}, response.data).then(function(deviceToken) {
+					authService.push.deviceToken = deviceToken;
+				});
+			}
+			else {
+				$ionicUser.identify(response.data);
+			}
 		});
 	}
 	
