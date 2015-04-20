@@ -47,25 +47,18 @@ angular.module('starter.services', [])
 			return;
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token).then(function(response) {
-			if (window.cordova && window.cordova.plugins) {
-				alert('push register');
-				$ionicPush.register({
-					canShowAlert: false,
-					onTokenRecieved: function(token) {
-						alert('token recived: ' + token);
-					},
-					onNotification: function(notification) {
-						alert('notification: ' + JSON.stringify(notification));
-						authService.push.lastNotification = JSON.stringify(notification);
-					}
-				}, response.data).then(function(deviceToken) {
-					authService.push.deviceToken = deviceToken;
-				});
-			}
-			else {
-				alert('push not register');
-				$ionicUser.identify(response.data);
-			}
+			$ionicPush.register({
+				canShowAlert: false,
+				onTokenRecieved: function(token) {
+					alert('token recived: ' + token);
+				},
+				onNotification: function(notification) {
+					alert('notification: ' + JSON.stringify(notification));
+					authService.push.lastNotification = JSON.stringify(notification);
+				}
+			}, response.data).then(function(deviceToken) {
+				authService.push.deviceToken = deviceToken;
+			});
 		});
 	}
 	

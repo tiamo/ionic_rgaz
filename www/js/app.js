@@ -1,7 +1,7 @@
 // Ionic Rgaz Application
 
-angular.extend(angular, {
-	toParam: function(object, prefix) {
+(function(){
+	function toParam(object, prefix) {
 		var stack = [];
 		var value;
 		var key;
@@ -19,7 +19,10 @@ angular.extend(angular, {
 		}
 		return stack.join('&');
 	}
-});
+	angular.extend(angular, {
+		toParam: toParam
+	});
+})();
 
 angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 'starter.controllers', 'starter.services'])
 // angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
@@ -52,7 +55,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 		if (window.StatusBar) {
 			StatusBar.styleLightContent();
 		}
-		alert(JSON.stringify(window.cordova.plugins))
 	});
 	
 	$rootScope.$on('$stateChangeStart', function(e) {
