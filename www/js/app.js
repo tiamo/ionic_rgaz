@@ -46,9 +46,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 .run(function($ionicPlatform, $rootScope, $ionicPush, Auth) {
 	
 	$ionicPlatform.ready(function() {
-		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-			
+		if (window.cordova && window.cordova.plugins) {
 			$ionicPush.register({
 				canShowAlert: false,
 				onNotification: function(notification) {
@@ -58,17 +56,18 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 			}).then(function(deviceToken) {
 				// $scope.token = deviceToken;
 			});
+			if (window.cordova.plugins.Keyboard) {
+				cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+			}
 		}
 		if (window.StatusBar) {
 			StatusBar.styleLightContent();
 		}
-		
 	});
 	
 	$rootScope.$on('$stateChangeStart', function(e) {
 		Auth.check();
 	});
-	
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
