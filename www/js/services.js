@@ -47,23 +47,24 @@ angular.module('starter.services', [])
 			return;
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token)
-		.success(function(data) {
-			console.log('Identifying user.');
-			$ionicUser.identify(data);
-			console.log('Register push.');
-			$ionicPush.register({
-				// canShowAlert: false,
-				onTokenRecieved: function(token) {
-					console.log('token recived: ' + token);
-				},
-				onNotification: function(notification) {
-					console.log('notification: ' + JSON.stringify(notification));
-					// authService.push.lastNotification = JSON.stringify(notification);
-				}
-			}).then(function(deviceToken) {
-				$ionicUser.set('deviceToken', deviceToken);
+			.success(function(data) {
+				
+				console.log('Identifying user.');
+				$ionicUser.identify(data);
+				
+				$ionicPush.register({
+					// canShowAlert: false,
+					onNotification: function(notification) {
+						console.log('notification: ' + JSON.stringify(notification));
+						// authService.push.lastNotification = JSON.stringify(notification);
+					}
+				}).then(function(deviceToken) {
+					$ionicUser.identify({
+						deviceToken: deviceToken
+					});
+				});
+				
 			});
-		});
 	}
 	
 	// check authorization

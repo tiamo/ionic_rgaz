@@ -1,7 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $location, $ionicPush, $ionicLoading, Auth) {
-
 	$scope.credentials = {
 		username: '',
 		password: ''
@@ -15,18 +14,19 @@ angular.module('starter.controllers', [])
 		$ionicLoading.show({
 			template: 'Загрузка...'
 		});
-		Auth.login(credentials).then(function(data){
-			if (data.token){
-				Auth.identify(data.token).then(function(){
-					$location.path(Auth.homePath);
+		Auth.login(credentials)
+			.then(function(data){
+				if (data.token){
+					Auth.identify(data.token).then(function(){
+						$location.path(Auth.homePath);
+						$ionicLoading.hide();
+					});
+				}
+				else {
+					$scope.error = 'Вы ввели не правильные данные.';
 					$ionicLoading.hide();
-				});
-			}
-			else {
-				$scope.error = 'Вы ввели не правильные данные.';
-				$ionicLoading.hide();
-			}
-		});
+				}
+			});
 	}
 })
 
