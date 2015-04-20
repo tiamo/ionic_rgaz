@@ -48,16 +48,19 @@ angular.module('starter.services', [])
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token)
 		.success(function(data) {
+			console.log('Identifying user.');
+			$ionicUser.identify(data);
+			console.log('Register push.');
 			$ionicPush.register({
 				// canShowAlert: false,
 				onTokenRecieved: function(token) {
-					// console.log('token recived: ' + token);
+					console.log('token recived: ' + token);
 				},
 				onNotification: function(notification) {
-					// console.log('notification: ' + JSON.stringify(notification));
+					console.log('notification: ' + JSON.stringify(notification));
 					// authService.push.lastNotification = JSON.stringify(notification);
 				}
-			}, data).then(function(deviceToken) {
+			}).then(function(deviceToken) {
 				$ionicUser.set('deviceToken', deviceToken);
 			});
 		});
