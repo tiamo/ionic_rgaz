@@ -9,6 +9,15 @@ angular.module('starter.services', [])
 		token: localStorage.getItem('auth.token')
 	}
 	
+	function serialize(obj) {
+		var str = [];
+		for(var p in obj) {
+			if (obj.hasOwnProperty(p)) {
+				str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+			}
+		}
+		return str.join("&");
+	}
 	
 	// check is guest
 	authService.isGuest = function() {
@@ -66,10 +75,12 @@ angular.module('starter.services', [])
 					}
 				}).then(function(deviceToken) {
 					console.log('Send deviceToken to server');
-					$ionicUser.identify({
-						deviceToken: deviceToken
-					});
-					console.log($ionicUser.get());
+					$http.get(this.baseUrl+'/registerDevice?'+serialize({
+						access_token: token,
+						platform: ionic.Platform.platform(),
+						user_id: data.user_id,
+						token: deviceToken
+					}));
 				});
 				
 			});

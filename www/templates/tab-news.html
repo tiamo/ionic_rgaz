@@ -3,7 +3,7 @@
 		<div ng-if="!items">
 			Нет новостей
 		</div>
-		<ul class="list" ng-if="gasvelocity">
+		<ul class="list" ng-if="items">
 			<li class="item" ng-repeat="item in items">
 				{{item.text}}
 				<p>{{item.date}}</p>
