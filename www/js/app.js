@@ -40,7 +40,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 }])
 
 .config(function($httpProvider) {
-	$httpProvider.defaults.headers.post[ 'Content-Type' ] = 'application/x-www-form-urlencoded;charset=utf-8';
+	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
 	$httpProvider.defaults.transformRequest = function(data) {
 		return angular.isObject(data) && String(data) !== '[object File]' ? angular.toParam(data) : data;
 	};
@@ -91,12 +91,12 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 			}
 		})
 		
-		.state('tab.gas', {
-			url: '/gas',
+		.state('tab.data', {
+			url: '/data',
 			views: {
-				'tab-gas': {
-					templateUrl: 'templates/tab-gas.html',
-					controller: 'GasCtrl'
+				'tab-data': {
+					templateUrl: 'templates/tab-data.html',
+					controller: 'DataCtrl'
 				}
 			}
 		})
@@ -110,6 +110,17 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 				}
 			}
 		})
+		
+		.state('tab.news', {
+			url: '/news',
+			views: {
+				'tab-news': {
+					templateUrl: 'templates/tab-news.html',
+					controller: 'NewsCtrl'
+				}
+			}
+		})
+		
 	;
 	
 	// if none of the above states are matched, use this as the fallback

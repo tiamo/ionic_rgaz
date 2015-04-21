@@ -1,8 +1,27 @@
 /* ionic rgaz app */
 
+.button-logout {
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index:11;
+	min-width:32px;
+	min-height:32px;
+	height:30px;
+	line-height:30px;
+	padding:0
+}
+.button-logout:before {
+	padding-right: 2px !important;
+	padding-left: 2px !important;
+	font-size: 20px !important;
+	line-height: 32px !important;
+}
+
 .gasholder {
 	max-width:786px;
 	position:relative;
+	padding:0 10px;
 	margin:0 auto;
 }
 .gasholder img {

@@ -1,0 +1,13 @@
+<ion-view view-title="Расход">
+	<ion-content class="padding">
+		<div ng-if="!gasvelocity">
+			Расход будет рассчитан как только будут обновлены показания
+		</div>
+		<ul class="list" ng-if="gasvelocity">
+			<li class="item">В день<span class="item-note">{{gasvelocity}}%</span></li>
+			<li class="item">В неделю<span class="item-note">{{gasvelocity * 7}}%</span></li>
+			<li class="item">В месяц<span class="item-note">{{gasvelocity * 30}}%</span></li>
+			<li class="item">Осталось газа на<span class="item-note">{{gasvolume / gasvelocity | number:0}} дн</span></li>
+		</ul>
+	</ion-content>
+</ion-view>

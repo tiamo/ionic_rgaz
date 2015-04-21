@@ -18,7 +18,8 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "org.apache.cordova.splashscreen",
-    "org.apache.cordova.dialogs"
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.media"
   ],
   "cordovaPlatforms": [
     "ios"

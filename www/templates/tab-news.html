@@ -1,0 +1,13 @@
+<ion-view view-title="Новости">
+	<ion-content class="padding">
+		<div ng-if="!items">
+			Нет новостей
+		</div>
+		<ul class="list" ng-if="gasvelocity">
+			<li class="item" ng-repeat="item in items">
+				{{item.text}}
+				<p>{{item.date}}</p>
+			</li>
+		</ul>
+	</ion-content>
+</ion-view>

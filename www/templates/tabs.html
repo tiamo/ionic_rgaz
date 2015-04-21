@@ -1,13 +1,13 @@
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-	<!-- Dashboard Tab -->
-	<ion-tab title="Расход" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
+	<!-- Dash Tab -->
+	<ion-tab title="Показания" icon-off="ion-ios-speedometer-outline" icon-on="ion-ios-speedometer" href="#/tab/dash">
 		<ion-nav-view name="tab-dash"></ion-nav-view>
 	</ion-tab>
 
-	<!-- Gas Tab -->
-	<ion-tab title="Показания" icon-off="ion-ios-speedometer-outline" icon-on="ion-ios-speedometer" href="#/tab/gas">
-		<ion-nav-view name="tab-gas"></ion-nav-view>
+	<!-- Data Tab -->
+	<ion-tab title="Расход" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/data">
+		<ion-nav-view name="tab-data"></ion-nav-view>
 	</ion-tab>
 
 	<!-- Account Tab -->
@@ -15,7 +15,9 @@
 		<ion-nav-view name="tab-account"></ion-nav-view>
 	</ion-tab>
 
-	<!-- Logout Tab -->
-	<ion-tab title="Выход" icon-off="ion-ios-redo-outline" ng-click="logout()"></ion-tab>
+	<!-- News Tab -->
+	<ion-tab title="Новости" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/news">
+		<ion-nav-view name="tab-news"></ion-nav-view>
+	</ion-tab>
 
 </ion-tabs>

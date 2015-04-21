@@ -6,7 +6,13 @@ angular.module('starter.services', [])
 		baseUrl: 'http://cl.rgaz.su/api',
 		homePath: '/dash',
 		loginPath: '/login',
-		token: localStorage.getItem('token')
+		token: localStorage.getItem('auth.token')
+	}
+	
+	
+	// check is guest
+	authService.isGuest = function() {
+		return !$ionicUser.get().user_id;
 	}
 	
 	// login
@@ -37,7 +43,7 @@ angular.module('starter.services', [])
 		if (!token) {
 			return;
 		}
-		localStorage.setItem('token', token);
+		localStorage.setItem('auth.token', token);
 		this.token = token;
 	}
 	
@@ -62,7 +68,6 @@ angular.module('starter.services', [])
 					$ionicUser.identify({
 						deviceToken: deviceToken
 					});
-					console.log($ionicUser.get());
 				});
 				
 			});
