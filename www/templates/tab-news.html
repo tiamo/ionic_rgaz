@@ -6,7 +6,7 @@
 		<ul class="list" ng-if="items">
 			<li class="item" ng-repeat="item in items">
 				{{item.text}}
-				<p>{{item.date}}</p>
+				<span class="item-note">{{item.date | date: "yyyy-MM-dd"}}</span>
 			</li>
 		</ul>
 	</ion-content>

@@ -67,14 +67,8 @@ angular.module('starter.services', [])
 				$ionicUser.identify(data);
 				$ionicPush.register({
 					// canShowAlert: false,
-					onNotification: function(notification) {
-						var news = localStorage.getItem('news')||[];
-						news.push({
-							message: notification.alert,
-							date: new Date()
-						});
-						localStorage.setItem('news', news);
-					}
+					// onNotification: function(notification) {
+					// }
 				}).then(function(deviceToken) {
 					console.log('Send deviceToken to server');
 					$http.get(authService.baseUrl+'/registerDevice?'+serialize({

@@ -47,9 +47,23 @@ angular.module('starter.controllers', [])
 	$scope.user = $ionicUser.get();
 })
 
-.controller('NewsCtrl', function($scope, $ionicUser) {
+.controller('NewsCtrl', function($scope, $rootScope) {
 	var news = localStorage.getItem('news')||[];
-	$scope.items = news && news.length>0 ? news : null;
+	
+		news.push({
+			text: 'test',
+			date: new Date()
+		});
+		
+	// on receive notification save to storage
+	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+		news.push({
+			text: notification.alert,
+			date: new Date()
+		});
+		localStorage.setItem('news', news);
+    });
+	$scope.items = news.length>0?news:null;
 })
 
 ;
