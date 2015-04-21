@@ -63,26 +63,27 @@ angular.module('starter.services', [])
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+token)
 			.success(function(data) {
-				
 				console.log('Identifying user.');
 				$ionicUser.identify(data);
-				
 				$ionicPush.register({
 					// canShowAlert: false,
 					onNotification: function(notification) {
-						console.log('notification: ' + JSON.stringify(notification));
-						// authService.push.lastNotification = JSON.stringify(notification);
+						var news = localStorage.getItem('news')||[];
+						news.push({
+							message: notification.alert,
+							date: new Date()
+						});
+						localStorage.setItem('news', news);
 					}
 				}).then(function(deviceToken) {
 					console.log('Send deviceToken to server');
-					$http.get(this.baseUrl+'/registerDevice?'+serialize({
+					$http.get(authService.baseUrl+'/registerDevice?'+serialize({
 						access_token: token,
 						platform: ionic.Platform.platform(),
 						user_id: data.user_id,
 						token: deviceToken
 					}));
 				});
-				
 			});
 	}
 	

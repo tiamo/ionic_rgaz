@@ -48,12 +48,8 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NewsCtrl', function($scope, $ionicUser) {
-	$scope.items = [
-		{
-			text: 'test',
-			date: '11.02.2025',
-		}
-	];
+	var news = localStorage.getItem('news')||[];
+	$scope.items = news && news.length>0 ? news : null;
 })
 
 ;
