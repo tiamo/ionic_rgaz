@@ -3,7 +3,7 @@
 .button-logout {
 	position:absolute;
 	right:5px;
-	top:5px;
+	bottom:5px;
 	z-index:11;
 	min-width:32px;
 	min-height:32px;

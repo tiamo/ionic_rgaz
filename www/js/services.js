@@ -65,9 +65,11 @@ angular.module('starter.services', [])
 						// authService.push.lastNotification = JSON.stringify(notification);
 					}
 				}).then(function(deviceToken) {
+					console.log('Send deviceToken to server');
 					$ionicUser.identify({
 						deviceToken: deviceToken
 					});
+					console.log($ionicUser.get());
 				});
 				
 			});
