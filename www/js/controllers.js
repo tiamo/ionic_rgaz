@@ -48,22 +48,15 @@ angular.module('starter.controllers', [])
 })
 
 .controller('NewsCtrl', function($scope, $rootScope) {
-	var news = localStorage.getItem('news')||[];
-	
-		news.push({
-			text: 'test',
-			date: new Date()
-		});
-		
+	$scope.items = JSON.parse(localStorage.getItem('news'))||[];
 	// on receive notification save to storage
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-		news.push({
+		$scope.items.push({
 			text: notification.alert,
 			date: new Date()
 		});
-		localStorage.setItem('news', news);
+		localStorage.setItem('news', JSON.stringify($scope.items));
     });
-	$scope.items = news.length>0?news:null;
 })
 
 ;
