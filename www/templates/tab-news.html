@@ -1,9 +1,9 @@
 <ion-view view-title="Новости">
 	<ion-content class="padding">
-		<div ng-if="!items">
+		<div ng-if="!items.length">
 			Нет новостей
 		</div>
-		<ul class="list" ng-if="items">
+		<ul class="list" ng-if="items.length">
 			<li class="item" ng-repeat="item in items">
 				{{item.text}}
 				<span class="item-note">{{item.date | date: "yyyy-MM-dd"}}</span>

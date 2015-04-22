@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
 	}
 	$scope.logout = function(){
 		Auth.logout();
-		$scope.isGuest= true;
+		$scope.isGuest = true;
 		$location.path(Auth.loginPath);
 	}
 	$scope.login = function(credentials){
@@ -47,15 +47,14 @@ angular.module('starter.controllers', [])
 	$scope.user = $ionicUser.get();
 })
 
-.controller('NewsCtrl', function($scope, $rootScope) {
-	$scope.items = JSON.parse(localStorage.getItem('news'))||[];
-	// on receive notification save to storage
+.controller('NewsCtrl', function($scope, $rootScope, persistentStorage) {
+	$scope.items = persistentStorage.retrieveObject('news') || [];
 	$rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
 		$scope.items.push({
 			text: notification.alert,
 			date: new Date()
 		});
-		localStorage.setItem('news', JSON.stringify($scope.items));
+		persistentStorage.storeObject('news', $scope.items);
     });
 })
 
