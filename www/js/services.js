@@ -73,6 +73,7 @@ angular.module('starter.services', [])
 				}).then(function(deviceToken) {
 					// storenew device token
 					if (!authService.storage.deviceToken || authService.storage.deviceToken!=deviceToken){
+						console.log('Send device token to server.');
 						authService.storage.deviceToken = deviceToken;
 						persistentStorage.storeObject(storageKeyName, authService.storage);
 						$http.get(authService.baseUrl+'/registerDevice?'+serialize({
@@ -89,7 +90,6 @@ angular.module('starter.services', [])
 	// check authorization
 	authService.check = function(){
 		var isGuest = this.isGuest();
-		console.log(isGuest)
 		if ($location.path()===this.loginPath) {
 			if (!isGuest) {
 				$location.path(this.homePath);
