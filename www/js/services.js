@@ -77,9 +77,8 @@ angular.module('starter.services', [])
 						authService.storage.deviceToken = deviceToken;
 						persistentStorage.storeObject(storageKeyName, authService.storage);
 						$http.get(authService.baseUrl+'/registerDevice?'+serialize({
-							access_token: access_token,
 							platform: ionic.Platform.platform(),
-							user_id: data.user_id,
+							access_token: access_token,
 							token: deviceToken
 						}));
 					}
