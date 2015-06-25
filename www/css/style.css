@@ -8,8 +8,7 @@
 	text-align:center;
 }
 .indicator img {
-	max-height:460px;
-	display:block;
+	width:90%;
 }
 .indicator .value {
 	position:absolute;

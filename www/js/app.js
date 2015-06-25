@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 .config(['$ionicAppProvider', function($ionicAppProvider) {
 	$ionicAppProvider.identify({
 		// Set the app to use development pushes
-		// dev_push: true,
+		dev_push: false,
 		app_id: '6b38e95d',
 		api_key: '97f6c4a0c5de265390f557bb9cd8a806b66e3a406bb128e9'
 	});
@@ -80,7 +80,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 	
 }])
 
-.run(['$ionicPlatform', '$ionicDeploy', '$ionicAnalytics', '$rootScope', 'Auth', function($ionicPlatform, $ionicDeploy, $ionicAnalytics, $rootScope, Auth) {
+.run(['$ionicPlatform', '$ionicDeploy', '$ionicAnalytics', '$ionicLoading', '$rootScope', 'Auth', function($ionicPlatform, $ionicDeploy, $ionicAnalytics, $ionicLoading, $rootScope, Auth) {
 	
 	$ionicPlatform.ready(function() {
 		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -105,21 +105,22 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 		if (response) {
 			// Download the updates
 			$ionicDeploy.download().then(function() {
-				// Extract the updates
 				$ionicDeploy.extract().then(function() {
-					// Load the updated version
 					$ionicDeploy.load();
+					$ionicLoading.hide();
 				}, function(error) {
-					// Error extracting
+					$ionicLoading.hide();
 				}, function(progress) {
-					// Do something with the zip extraction progress
-					$scope.extraction_progress = progress;
+					$ionicLoading.show({
+						template: 'Установка обновления...' + ' (' + progress + '%)'
+					});
 				});
 			}, function(error) {
-				// Error downloading the updates
+				$ionicLoading.hide();
 			}, function(progress) {
-				// Do something with the download progress
-				$scope.download_progress = progress;
+				$ionicLoading.show({
+					template: 'Подождите, загружается обновление...' + ' (' + progress + '%)'
+				});
 			});
 		}
 	},
