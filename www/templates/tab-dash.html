@@ -1,10 +1,12 @@
 <ion-view view-title="Показания">
 	<ion-content class="padding">
 		<br/>
-		<div class="gasholder" title="Последнее обновление {{user.gasupdated*1000|date:'yyyy-MM-dd HH:mm:ss'}}">
-			<div class="progress"><div style="height:{{user.gasvolume}}%"></div></div>
-			<div class="value">{{user.gasvolume}}%</div>
-			<img ng-src="img/gasholder.png" alt="" />
+		<div class="indicator" title="Последнее обновление {{user.gasupdated*1000|date:'yyyy-MM-dd HH:mm:ss'}}" ng-click="go('#/tab/data/')">
+			<img ng-if="user.gasvolume == 0" ng-src="img/indicator/0.png" alt="" />
+			<img ng-if="user.gasvolume > 0 && user.gasvolume <= 25" ng-src="img/indicator/25.png" alt="" />
+			<img ng-if="user.gasvolume > 25 && user.gasvolume < 85" ng-src="img/indicator/50.png" alt="" />
+			<img ng-if="user.gasvolume >= 85" ng-src="img/indicator/100.png" alt="" />
+			<div class="value">{{ user.gasvolume }}%</div>
 		</div>
 	</ion-content>
 </ion-view>

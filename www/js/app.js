@@ -1,68 +1,20 @@
-// Ionic Rgaz Application
+/**
+ * Rgaz (ionic application) http://rgaz.su
+ * @author vk.tiamo@gmail.com
+ */
 
-(function(){
-	function toParam(object, prefix) {
-		var stack = [];
-		var value;
-		var key;
-		for(key in object) {
-			value = object[ key ];
-			key = prefix ? prefix + '[' + key + ']' : key;
-			if (value === null) {
-				value = encodeURIComponent(key) + '=';
-			} else if (typeof(value) !== 'object') {
-				value = encodeURIComponent(key) + '=' + encodeURIComponent(value);
-			} else {
-				value = toParam(value, key);
-			}
-			stack.push(value);
-		}
-		return stack.join('&');
-	}
-	angular.extend(angular, {
-		toParam: toParam
-	});
-})();
-
-angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 'starter.controllers', 'starter.services'])
-// angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 'ionic.service.deploy', 'ionic.service.analytics', 'starter.controllers', 'starter.services'])
 
 .config(['$ionicAppProvider', function($ionicAppProvider) {
-	// Identify app
 	$ionicAppProvider.identify({
-		// The App ID for the server
+		// Set the app to use development pushes
+		// dev_push: true,
 		app_id: '6b38e95d',
-		// The API key all services will use for this app
-		api_key: '08a8d5bc67c81347d95533272a8891c2186db8c8304b1c6a'
-		// Your GCM sender ID/project number (Uncomment if using GCM)
-		//gcm_id: 'YOUR_GCM_ID'
+		api_key: '97f6c4a0c5de265390f557bb9cd8a806b66e3a406bb128e9'
 	});
 }])
 
-.config(function($httpProvider) {
-	$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-	$httpProvider.defaults.transformRequest = function(data) {
-		return angular.isObject(data) && String(data) !== '[object File]' ? angular.toParam(data) : data;
-	};
-})
-
-.run(function($ionicPlatform, $rootScope, Auth) {
-	
-	$ionicPlatform.ready(function() {
-		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-		}
-		if (window.StatusBar) {
-			StatusBar.styleLightContent();
-		}
-	});
-	
-	$rootScope.$on('$stateChangeStart', function(e) {
-		Auth.check();
-	});
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider
 
@@ -126,4 +78,54 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/tab/dash');
 	
-});
+}])
+
+.run(['$ionicPlatform', '$ionicDeploy', '$ionicAnalytics', '$rootScope', 'Auth', function($ionicPlatform, $ionicDeploy, $ionicAnalytics, $rootScope, Auth) {
+	
+	$ionicPlatform.ready(function() {
+		if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+			cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+		}
+		if (window.StatusBar) {
+			StatusBar.styleLightContent();
+		}
+	});
+	
+	// check user auth
+	$rootScope.$on('$stateChangeStart', function(e) {
+		Auth.check();
+	});
+	
+	// register analytics
+	$ionicAnalytics.register();
+	
+    // Check for updates
+    $ionicDeploy.check().then(function(response) {
+		// response will be true/false
+		if (response) {
+			// Download the updates
+			$ionicDeploy.download().then(function() {
+				// Extract the updates
+				$ionicDeploy.extract().then(function() {
+					// Load the updated version
+					$ionicDeploy.load();
+				}, function(error) {
+					// Error extracting
+				}, function(progress) {
+					// Do something with the zip extraction progress
+					$scope.extraction_progress = progress;
+				});
+			}, function(error) {
+				// Error downloading the updates
+			}, function(progress) {
+				// Do something with the download progress
+				$scope.download_progress = progress;
+			});
+		}
+	},
+	function(error) {
+		// Error checking for updates
+	});
+}])
+
+;

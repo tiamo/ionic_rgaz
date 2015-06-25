@@ -39,6 +39,7 @@
   <gap:plugin name="org.apache.cordova.dialogs"/>
   <gap:plugin name="org.apache.cordova.media"/>
   <gap:plugin name="com.phonegap.plugins.PushPlugin"/>
+  <gap:plugin name="com.ionic.deploy"/>
   <access origin="*"/>
   <platform name="ios">
     <icon src="resources\ios\icon\icon.png" width="57" height="57"/>

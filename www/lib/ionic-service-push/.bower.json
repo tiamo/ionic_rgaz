@@ -16,16 +16,15 @@
     "tests"
   ],
   "dependencies": {
-    "ionic-service-core": "master"
+    "ionic-service-core": " >= 0.1.4"
   },
-  "_release": "17b1a731ae",
+  "_release": "2889523d01",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "17b1a731aefaa9bedc9ef6502498a31b813c2d9e"
+    "commit": "2889523d01e7b1f73d711d22692301c5cee47f1f"
   },
   "_source": "git://github.com/driftyco/ionic-service-push-client.git",
   "_target": "master",
-  "_originalSource": "ionic-service-push",
-  "_direct": true
+  "_originalSource": "ionic-service-push"
 }

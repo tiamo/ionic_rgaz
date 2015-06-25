@@ -31,6 +31,9 @@ angular.module('starter.controllers', [])
 				}
 			});
 	}
+	$scope.go = function(path) {
+		$location.path(path);
+	};
 })
 
 .controller('DashCtrl', function($scope, $ionicUser) {

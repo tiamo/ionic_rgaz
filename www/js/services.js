@@ -64,7 +64,8 @@ angular.module('starter.services', [])
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+access_token)
 			.success(function(data) {
-				console.log('Identifying user.');
+				console.log('Identifying user.', data);
+				data.user_id = 'rgaz' + data.user_id;
 				$ionicUser.identify(data);
 				$ionicPush.register({
 					// canShowAlert: false,
@@ -72,18 +73,22 @@ angular.module('starter.services', [])
 					// }
 				}).then(function(deviceToken) {
 					// storenew device token
-					if (!authService.storage.deviceToken || authService.storage.deviceToken!=deviceToken){
-						console.log('Send device token to server.');
-						authService.storage.deviceToken = deviceToken;
-						persistentStorage.storeObject(storageKeyName, authService.storage);
-						$http.get(authService.baseUrl+'/registerDevice?'+serialize({
-							platform: ionic.Platform.platform(),
-							access_token: access_token,
-							token: deviceToken
-						}));
-					}
+					// if (!authService.storage.deviceToken || authService.storage.deviceToken!=deviceToken){
+						// console.log('Send device token to server.');
+						// authService.storage.deviceToken = deviceToken;
+						// persistentStorage.storeObject(storageKeyName, authService.storage);
+						// $http.get(authService.baseUrl+'/registerDevice?'+serialize({
+							// platform: ionic.Platform.platform(),
+							// access_token: access_token,
+							// token: deviceToken
+						// }));
+					// }
 				});
-			});
+			})
+			.error(function(){
+				authService.logout();
+			})
+		;
 	}
 	
 	// check authorization

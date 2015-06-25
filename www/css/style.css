@@ -1,5 +1,29 @@
 /* ionic rgaz app */
 
+.indicator {
+	max-width:512px;
+	position:relative;
+	padding:0 10px;
+	margin:0 auto;
+}
+.indicator img {
+	width:90%;
+	display:block;
+}
+.indicator .value {
+	position:absolute;
+	top:50%;
+	left:50%;
+	text-align:center;
+	width:50px;
+	line-height:30px;
+	margin:0 0 0 -40px;
+	font-size:2em;
+	white-space:nowrap;
+	font-weight:700;
+	/* text-shadow:1px -1px 0 #fff; */
+}
+
 .gasholder {
 	max-width:786px;
 	position:relative;

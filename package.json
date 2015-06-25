@@ -19,7 +19,11 @@
     "org.apache.cordova.console",
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.dialogs",
-    "org.apache.cordova.media"
+    "org.apache.cordova.media",
+    {
+      "locator": "https://github.com/driftyco/ionic-plugins-deploy",
+      "id": "com.ionic.deploy"
+    }
   ],
   "cordovaPlatforms": [
     "ios"
