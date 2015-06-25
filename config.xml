@@ -22,7 +22,7 @@
   <feature name="PushPlugin">
     <param name="ios-package" value="PushPlugin"/>
   </feature>
-  <icon src="resources\ios\icon\icon-small@3x.png"/>
+  <icon src="resources/ios/icon/icon-small@3x.png"/>
   <gap:splash gap:platform="ios" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" height="1136"/>
   <gap:splash gap:platform="ios" src="resources/ios/splash/Default-667h.png" width="750" height="1334"/>
   <gap:splash gap:platform="ios" src="resources/ios/splash/Default-736h.png" width="1242" height="2208"/>
