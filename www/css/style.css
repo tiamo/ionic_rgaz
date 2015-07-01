@@ -1,7 +1,7 @@
 /* ionic rgaz app */
 
 .indicator {
-	max-width:308px;
+	max-width:240px;
 	position:relative;
 	padding:0 10px;
 	margin:0 auto;
@@ -18,7 +18,7 @@
 	width:50px;
 	line-height:30px;
 	margin:0 0 0 -25px;
-	font-size:2em;
+	font-size:1.7em;
 	white-space:nowrap;
 	font-weight:700;
 	text-shadow:1px 0 0 #fff;
