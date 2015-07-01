@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 .config(['$ionicAppProvider', function($ionicAppProvider) {
 	$ionicAppProvider.identify({
 		// Set the app to use development pushes
-		dev_push: false,
+		dev_push: window.location && window.location.port == 8100,
 		app_id: '6b38e95d',
 		api_key: '97f6c4a0c5de265390f557bb9cd8a806b66e3a406bb128e9'
 	});
@@ -101,7 +101,6 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 	
     // Check for updates
     $ionicDeploy.check().then(function(response) {
-		// response will be true/false
 		if (response) {
 			// Download the updates
 			$ionicDeploy.download().then(function() {
@@ -112,14 +111,14 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 					$ionicLoading.hide();
 				}, function(progress) {
 					$ionicLoading.show({
-						template: 'Установка обновления...' + ' (' + progress + '%)'
+						template: 'Установка обновления... (' + progress + '%)'
 					});
 				});
 			}, function(error) {
 				$ionicLoading.hide();
 			}, function(progress) {
 				$ionicLoading.show({
-					template: 'Подождите, загружается обновление...' + ' (' + progress + '%)'
+					template: 'Подождите, загружается обновление.. (' + progress + '%)'
 				});
 			});
 		}

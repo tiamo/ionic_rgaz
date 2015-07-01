@@ -64,7 +64,7 @@ angular.module('starter.services', [])
 		}
 		return $http.get(this.baseUrl+'/user?access_token='+access_token)
 			.success(function(data) {
-				console.log('Identifying user.', data);
+				// console.log('Identifying user.', data);
 				data.user_id = 'rgaz' + data.user_id;
 				$ionicUser.identify(data);
 				$ionicPush.register({

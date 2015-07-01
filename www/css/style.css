@@ -8,7 +8,7 @@
 	text-align:center;
 }
 .indicator img {
-	width:90%;
+	width:100%;
 }
 .indicator .value {
 	position:absolute;
@@ -21,7 +21,8 @@
 	font-size:2em;
 	white-space:nowrap;
 	font-weight:700;
-	/* text-shadow:1px -1px 0 #fff; */
+	text-shadow:1px 0 0 #fff;
+	color:#222
 }
 
 .gasholder {
