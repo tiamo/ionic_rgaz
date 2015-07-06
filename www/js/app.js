@@ -10,7 +10,8 @@ angular.module('starter', ['ionic', 'ionic.service.core', 'ionic.service.push', 
 		// Set the app to use development pushes
 		dev_push: window.location && window.location.port == 8100,
 		app_id: '6b38e95d',
-		api_key: '97f6c4a0c5de265390f557bb9cd8a806b66e3a406bb128e9'
+		api_key: '97f6c4a0c5de265390f557bb9cd8a806b66e3a406bb128e9',
+		gcm_id: 'AIzaSyBhPidnCFCYMe9iMf5BgK4s0qoJ_2XybDA'
 	});
 }])
 
